@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import '../widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,34 +7,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        bottom: PreferredSize(
-     preferredSize: const Size.fromHeight(4.0),
-     child: Container(
-        color: Colors.orange,
-        height: 4.0,
-     )),
-          systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          toolbarHeight: 100,
-          title: const Text("Custom App Bar"),
-          centerTitle: true,
-          flexibleSpace: Container(
-            decoration: _boxDecoration(),
-          ),
+      appBar: const HomeAppBar(
+        goodKeyword: 'Evening',
+        name: 'Amanat Singh',
+      ),
+      backgroundColor: const Color.fromARGB(255, 255, 226, 202),
+      body: Padding(
+        padding:  const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: const [
+            HomeCard()],
         ),
+      ),
     );
   }
-
-  BoxDecoration _boxDecoration() {
-    return const BoxDecoration(
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
-              gradient: LinearGradient(
-                  colors: [Color(0xFF6f0765),Color(0xFFFFB228)],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter
-              )
-          );
-  }
 }
+
