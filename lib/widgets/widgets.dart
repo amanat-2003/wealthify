@@ -1,8 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final double toolbarHeight = 100;
+  final double toolbarHeight = 120;
   final String goodKeyword;
   final String name;
 
@@ -91,7 +92,8 @@ class CustomBox extends StatelessWidget {
   final double width;
   final String hintText;
 
-  const CustomBox({super.key, 
+  const CustomBox({
+    super.key,
     required this.height,
     required this.width,
     required this.hintText,
@@ -115,85 +117,94 @@ class CustomBox extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width / 5),
           child: Text(hintText,
-              style:
-                  const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold)),
         ),
       ),
     );
   }
 }
 
-
-
 class HomeCard extends StatelessWidget {
   const HomeCard({
-    super.key,
-  });
+    Key? key,
+    required this.width,
+  }) : super(key: key);
+  final double width;
 
   @override
   Widget build(BuildContext context) {
+    final w1 = 0.7702 * width;
+    final w2 = 0.2298 * width;
+    final height = 0.59459 * width;
+    final borderRadius = 3 / 37 * width;
+    final internalPadding = 16 / 370 * width;
+    final bigFontSize = 25 / 370 * width;
+    final smallFontSize = 13 / 370 * width;
+    final selectedSize = 4 / 37 * width;
+    final unSelectedSize = 3 / 37 * width;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Stack(children: [
           Container(
-            height: 220,
-            width: 285,
-            decoration: const BoxDecoration(
+            height: height,
+            width: w1,
+            decoration:  BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
+                  topLeft: Radius.circular(borderRadius),
+                  bottomLeft: Radius.circular(borderRadius),
                 ),
                 color: Colors.white),
           ),
           Container(
-            height: 220,
-            width: 285,
-            decoration: const BoxDecoration(
+            height: height,
+            width: w1,
+            decoration:  BoxDecoration(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
+                topLeft: Radius.circular(borderRadius),
+                bottomLeft: Radius.circular(borderRadius),
               ),
-              gradient: LinearGradient(
-                  colors: [Colors.black45, Colors.black],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [0, 1]),
+              gradient: const LinearGradient(
+                colors: [Colors.black45, Colors.black],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(internalPadding),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children:  [
                       Text(
                         'This month',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: bigFontSize,
                             fontWeight: FontWeight.w500),
                       ),
-                      Icon(Icons.search, color: Colors.white, size: 30),
+                      Icon(Icons.search, color: Colors.white, size: unSelectedSize),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children:  [
                       Text(
                         'Available Balance',
                         style: TextStyle(
                             color: Colors.white60,
-                            fontSize: 13,
+                            fontSize: smallFontSize,
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
                         '₹21,600',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: bigFontSize,
                             fontWeight: FontWeight.w500),
                       ),
                     ],
@@ -203,38 +214,38 @@ class HomeCard extends StatelessWidget {
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children:  [
                           Text(
                             'Spending',
                             style: TextStyle(
                                 color: Colors.white60,
-                                fontSize: 13,
+                                fontSize: smallFontSize,
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
                             '₹2,120',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: bigFontSize,
                                 fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children:  [
                           Text(
                             'Income',
                             style: TextStyle(
                                 color: Colors.white60,
-                                fontSize: 13,
+                                fontSize: smallFontSize,
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
                             '₹23,720',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20,
+                                fontSize: bigFontSize,
                                 fontWeight: FontWeight.w500),
                           ),
                         ],
@@ -247,27 +258,44 @@ class HomeCard extends StatelessWidget {
           ),
         ]),
         Container(
-          height: 220,
-          width: 85,
-          decoration: const BoxDecoration(
+          height: height,
+          width: w2,
+          decoration:  BoxDecoration(
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(30),
-              bottomRight: Radius.circular(30),
+              topRight: Radius.circular(borderRadius),
+              bottomRight: Radius.circular(borderRadius),
             ),
-            gradient: LinearGradient(
-              colors: [Color.fromARGB(255, 255, 197, 120),Color.fromARGB(255, 255, 137, 40)],
+            gradient: const LinearGradient(
+              colors: [
+                Color.fromARGB(255, 255, 197, 120),
+                Color.fromARGB(255, 255, 137, 40)
+              ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding:  EdgeInsets.all(internalPadding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Text('₹', style: TextStyle(color: Colors.white, fontSize: 40),),
-                SizedBox(height: 10,),
-                Text('\$', style: TextStyle(color: Colors.white, fontSize: 25),),
+              children:  [
+                Text(
+                  '₹',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: selectedSize,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  '\$',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: unSelectedSize,
+                      fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ),

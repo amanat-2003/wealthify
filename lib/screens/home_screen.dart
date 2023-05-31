@@ -6,6 +6,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const HomeAppBar(
         goodKeyword: 'Evening',
@@ -13,14 +14,15 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: const Color.fromARGB(255, 255, 226, 202),
       body: Padding(
-        padding:  const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 2/100 * screenSize.width),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [
-            HomeCard()],
+          children:  [
+            HomeCard(width: 95/100 * screenSize.width),
+
+          ],
         ),
       ),
     );
   }
 }
-
