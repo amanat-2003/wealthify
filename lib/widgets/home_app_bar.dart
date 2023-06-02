@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final double toolbarHeight = 120;
+  final double toolbarHeight = 90;
   final String goodKeyword;
   final String name;
 
