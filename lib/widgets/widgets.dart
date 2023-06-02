@@ -1,129 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final double toolbarHeight = 120;
-  final String goodKeyword;
-  final String name;
+import '../constants/enums.dart';
+import 'category_status_card.dart';
+import 'gradient_box.dart';
+import 'home_list_item.dart';
 
-  const HomeAppBar({
-    Key? key,
-    required this.goodKeyword,
-    required this.name,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      systemOverlayStyle:
-          const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-      backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      toolbarHeight: toolbarHeight,
-      flexibleSpace: Container(
-        decoration: _boxDecoration(),
-      ),
-      title: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Good $goodKeyword',
-                style: const TextStyle(
-                    color: Color(0xff000000),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400)),
-            Text(
-              name,
-              style: const TextStyle(
-                color: Color(0xff000000),
-                fontSize: 25,
-                fontWeight: FontWeight.w400,
-              ),
-            )
-          ],
-        ),
-      ),
-      actions: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 60,
-              padding: const EdgeInsets.all(1.6), // Border width
-              decoration: BoxDecoration(
-                  color: Colors.black, borderRadius: BorderRadius.circular(15)),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(13),
-                child: SizedBox.fromSize(
-                  size: const Size.fromRadius(30), // Image radius
-                  child: Image.asset('assets/photo.png', fit: BoxFit.cover),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          width: 20,
-        ),
-      ],
-    );
-  }
-
-  @override
-  Size get preferredSize => Size.fromHeight(toolbarHeight);
-
-  BoxDecoration _boxDecoration() {
-    return const BoxDecoration(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-        gradient: LinearGradient(
-          colors: [Color.fromARGB(255, 206, 7, 186), Color(0xFFFFB228)],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          // stops: [0.01, 1.0]
-        ));
-  }
-}
-
-class CustomBox extends StatelessWidget {
-  final double height;
-  final double width;
-  final String hintText;
-
-  const CustomBox({
-    super.key,
-    required this.height,
-    required this.width,
-    required this.hintText,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.purple.shade600), // Add the border
-        gradient: LinearGradient(
-          colors: [Colors.purple.shade200, Colors.purple.shade400],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width / 5),
-          child: Text(hintText,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold)),
-        ),
-      ),
-    );
-  }
-}
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
@@ -137,7 +18,7 @@ class HomeCard extends StatelessWidget {
     final w1 = 0.7702 * width;
     final w2 = 0.2298 * width;
     final height = 0.59459 * width;
-    final borderRadius = 3 / 37 * width;
+    final borderRadius = 2 / 37 * width;
     final internalPadding = 16 / 370 * width;
     final bigFontSize = 25 / 370 * width;
     final smallFontSize = 13 / 370 * width;
@@ -150,7 +31,7 @@ class HomeCard extends StatelessWidget {
           Container(
             height: height,
             width: w1,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(borderRadius),
                   bottomLeft: Radius.circular(borderRadius),
@@ -160,7 +41,7 @@ class HomeCard extends StatelessWidget {
           Container(
             height: height,
             width: w1,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(borderRadius),
                 bottomLeft: Radius.circular(borderRadius),
@@ -179,7 +60,7 @@ class HomeCard extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  [
+                    children: [
                       Text(
                         'This month',
                         style: TextStyle(
@@ -187,12 +68,13 @@ class HomeCard extends StatelessWidget {
                             fontSize: bigFontSize,
                             fontWeight: FontWeight.w500),
                       ),
-                      Icon(Icons.search, color: Colors.white, size: unSelectedSize),
+                      Icon(Icons.search,
+                          color: Colors.white, size: unSelectedSize),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:  [
+                    children: [
                       Text(
                         'Available Balance',
                         style: TextStyle(
@@ -214,7 +96,7 @@ class HomeCard extends StatelessWidget {
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children:  [
+                        children: [
                           Text(
                             'Spending',
                             style: TextStyle(
@@ -233,7 +115,7 @@ class HomeCard extends StatelessWidget {
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children:  [
+                        children: [
                           Text(
                             'Income',
                             style: TextStyle(
@@ -260,7 +142,7 @@ class HomeCard extends StatelessWidget {
         Container(
           height: height,
           width: w2,
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(borderRadius),
               bottomRight: Radius.circular(borderRadius),
@@ -275,10 +157,10 @@ class HomeCard extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding:  EdgeInsets.all(internalPadding),
+            padding: EdgeInsets.all(internalPadding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              children:  [
+              children: [
                 Text(
                   '₹',
                   style: TextStyle(
@@ -286,8 +168,8 @@ class HomeCard extends StatelessWidget {
                       fontSize: selectedSize,
                       fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: selectedSize / 4,
                 ),
                 Text(
                   '\$',
@@ -299,6 +181,163 @@ class HomeCard extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class RecentTransactionsPortion extends StatelessWidget {
+  const RecentTransactionsPortion({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                'Recent Transactions',
+                style: TextStyle(
+                  color: Color(0xff323232),
+                  fontSize: 22,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              CustomBox(
+                height: 30,
+                width: 100,
+                text: 'See All',
+                icon: Icons.list,
+                foregroundColor: Color(0xff323232),
+              ),
+            ],
+          ),
+        ),
+
+        const Divider(color: Colors.brown),
+
+        const HomeListItem(
+          icon: Icons.account_balance_outlined,
+          amount: '30,000',
+          isExpense: false,
+          time: '01 June 2023, 10:25 AM',
+          title: 'Salary',
+        ),
+        const HomeListItem(
+          icon: Icons.snowboarding,
+          amount: '10,000',
+          isExpense: true,
+          time: '01 December 2023, 10:25 AM',
+          title: 'Winter Trip',
+        ),
+        const HomeListItem(
+          icon: Icons.cake,
+          amount: '5000',
+          isExpense: true,
+          time: '07 February 2023, 04:25 PM',
+          title: 'Birthday Celebration',
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
+class MonthlyTransactionsPortion extends StatelessWidget {
+  const MonthlyTransactionsPortion({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const double cardHeight = 180;
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                'Monthly Budget',
+                style: TextStyle(
+                  color: Color(0xff323232),
+                  fontSize: 22,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              CustomBox(
+                height: 30,
+                width: 100,
+                text: 'Edit Budget',
+                foregroundColor: Color(0xff323232),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 5),
+        SizedBox(
+          height: cardHeight,
+          child: ListView(scrollDirection: Axis.horizontal, children: [
+            Row(
+              children: const [
+                SizedBox(
+                  width: 15,
+                ),
+                CategoryStatusCard(
+                  icon: Icons.explore_outlined,
+                  category: 'Electronics',
+                  totalBudget: 100000,
+                  spentBudget: 60000,
+                  status: MonthlyLimitStatus.crossed,
+                  heightOfCard: cardHeight,
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+              ],
+            ),
+            Row(
+              children: const [
+                SizedBox(
+                  width: 15,
+                ),
+                CategoryStatusCard(
+                  icon: Icons.explore_outlined,
+                  category: 'Electronics',
+                  totalBudget: 100000,
+                  spentBudget: 60000,
+                  status: MonthlyLimitStatus.warning,
+                  heightOfCard: cardHeight,
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+              ],
+            ),
+            Row(
+              children: const [
+                SizedBox(
+                  width: 15,
+                ),
+                CategoryStatusCard(
+                  icon: Icons.explore_outlined,
+                  category: 'Electronics',
+                  totalBudget: 100000,
+                  spentBudget: 60000,
+                  status: MonthlyLimitStatus.under,
+                  heightOfCard: cardHeight,
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+              ],
+            ),
+          ]),
         ),
       ],
     );
